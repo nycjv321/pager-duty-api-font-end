@@ -1,0 +1,60 @@
+{{>layouts/top}}
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">Saved Searches</h1>
+
+    <h2 class="sub-header">See/Edit Saved Searches Below</h2>
+    <script>
+        $(document).ready(function () {
+
+            if (typeof localStorage['pager-duty-apps.history'] != 'undefined') {
+                data = JSON.parse(localStorage['pager-duty-apps.history']);
+                var length = data.length;
+                for (var i = 0; i < length; ++i) {
+                    var instance = jQuery.parseJSON(JSON.parse(data[i]));
+                    $("table tbody").append("<tr><td>" + (i + 1) + "</td><td><a class=\"saved_search\" href=\"#\">" + instance["name"] + "</a></td><td><a class=\"saved_search\" href=\"#\">" + instance["query"] + "</a></td><td><a href=\"/\"><img class=\"delete\" src=\"images/redx.png\"/></a></tr>");
+                }
+            } else {
+                console.log("no history");
+            }
+
+            $(".main").on("click", ".saved_search", function (event) {
+                event.preventDefault();
+                var tr = $("tr").has($(event.target));
+                query = $(tr.find("td")[2]).text();
+                $("form input").val(query);
+
+                var e = $.Event("keydown");
+                e.which = 13;
+                e.keyCode = 13;
+                $("form input").trigger(e);
+
+            });
+
+            $(".main").on("click", ".delete", function (event) {
+                event.preventDefault();
+                var tr = $("tr").has($(event.target));
+                index = tr.find("td").first().text();
+                data = JSON.parse(localStorage['pager-duty-apps.history']);
+                tr.remove();
+                localStorage['pager-duty-apps.history'] = JSON.stringify(data.splice(index, 1));
+            });
+        });
+
+    </script>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Query</th>
+                <th>Delete Me!</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+{{>layouts/bottom}}

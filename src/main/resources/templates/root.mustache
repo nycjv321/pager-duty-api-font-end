@@ -1,0 +1,73 @@
+{{>layouts/top}}
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">Dashboard</h1>
+    <!--fancy graphs go here-->
+    <!--<div class="row placeholders">-->
+    <!--<div class="col-xs-6 col-sm-3 placeholder">-->
+    <!--<img data-src="holder.js/200x200/auto/sky" class="img-responsive"-->
+    <!--alt="Generic placeholder thumbnail">-->
+    <!--<h4>Label</h4>-->
+    <!--<span class="text-muted">Something else</span>-->
+    <!--</div>-->
+    <!--<div class="col-xs-6 col-sm-3 placeholder">-->
+    <!--<img data-src="holder.js/200x200/auto/vine" class="img-responsive"-->
+    <!--alt="Generic placeholder thumbnail">-->
+    <!--<h4>Label</h4>-->
+    <!--<span class="text-muted">Something else</span>-->
+    <!--</div>-->
+    <!--<div class="col-xs-6 col-sm-3 placeholder">-->
+    <!--<img data-src="holder.js/200x200/auto/sky" class="img-responsive"-->
+    <!--alt="Generic placeholder thumbnail">-->
+    <!--<h4>Label</h4>-->
+    <!--<span class="text-muted">Something else</span>-->
+    <!--</div>-->
+    <!--<div class="col-xs-6 col-sm-3 placeholder">-->
+    <!--<img data-src="holder.js/200x200/auto/vine" class="img-responsive"-->
+    <!--alt="Generic placeholder thumbnail">-->
+    <!--<h4>Label</h4>-->
+    <!--<span class="text-muted">Something else</span>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <h2 class="sub-header">Incidents</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Summary</th>
+                <th>Created on</th>
+                <th>Status</th>
+                <th>Last Edited By</th>
+                <th>Team</th>
+                <th>Email</th>
+                <th>Notes</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#incidents}}
+                <tr>
+                    <td><a href="{{getUrl}}">{{getNumber}}</a></td>
+                    <td>{{getSummary}}</td>
+                    <td>{{getCreationDate}}</td>
+                    <td>{{getStatus}}</td>
+                    <td>{{getResolvedBy.name}}</td>
+                    <td>{{getTeam}}</td>
+                    <td>
+                        <button type="button" class="btn btn-default btn-sm email-button">
+                            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Email
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default btn-sm note-button">
+                            <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Notes
+                        </button>
+                    </td>
+                </tr>
+            {{/incidents}}
+
+            </tbody>
+        </table>
+    </div>
+    {{>layouts/bottom}}

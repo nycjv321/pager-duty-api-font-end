@@ -1,0 +1,8 @@
+.incidents .inline {
+    display: inline;
+}
+
+.list-group[id*='summary'] {
+    height: 400px;
+    overflow: scroll;
+}

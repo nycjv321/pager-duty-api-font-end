@@ -1,0 +1,70 @@
+{{>layouts/top}}
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">Reports</h1>
+
+    <script>
+        $(document).ready(function () {
+
+            $.ajax({
+                url: "/incident_creators_count.json",
+                dataType: 'json',
+                success: function (data) {
+                    for (i = 0; i < data.length; ++i) {
+                        var incident_creator = data[i];
+                        $("#incident-creator-summary").append("<li class=\"list-group-item\"><span class=\"badge\">" + incident_creator.count.toString() + " incidents</span><span class=\"label label-default\">" + (i + 1) + "</span>&nbsp&nbsp&nbsp&nbsp" + incident_creator._id + "</li>");
+                    }
+                }
+            });
+
+            $.ajax({
+                url: "/incident_resolve_count.json",
+                dataType: 'json',
+                success: function (data) {
+                    for (i = 0; i < data.length; ++i) {
+                        var incident_resolver = data[i];
+                        if (incident_resolver.count > 0) {
+                            $("#incident-solver-summary").append("<li class=\"list-group-item\"><span class=\"badge\">" + incident_resolver.count + " incidents</span><span class=\"label label-default\">" + (i + 1) + "</span>&nbsp&nbsp&nbsp&nbsp" + incident_resolver.user + "</li>");
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+    <div class="row">
+        <h3>Incident by Search Term</h3>
+        <div class="col-md-3">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Term..."/>
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Add!</button>
+              </span>
+            </div>
+            <br>
+            <ul class="list-group">
+                <li class="list-group-item">Xymon</li>
+                <li class="list-group-item">Content Studio</li>
+                <li class="list-group-item">Newsgate</li>
+                <li class="list-group-item">CCI</li>
+                <li class="list-group-item">Password</li>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <p>Graph Goes Here</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-5">
+            <h3>Top Incident Creators</h3>
+            <ul id="incident-creator-summary" class="list-group"></ul>
+        </div>
+
+        <div class="col-lg-5">
+            <h3>Top Incident Responders</h3>
+            <ul id="incident-solver-summary" class="list-group"></ul>
+        </div>
+    </div>
+
+</div>
+{{>layouts/bottom}}
