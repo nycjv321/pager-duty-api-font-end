@@ -10,7 +10,7 @@ public class IncidentJsonView extends ModelAndView {
     /**
      * Constructs an instance with the provided model and view name
      *
-     * @param model    the model
+     * @param model    the models
      * @param viewName the view name
      */
     public IncidentJsonView(Object model, String viewName) {

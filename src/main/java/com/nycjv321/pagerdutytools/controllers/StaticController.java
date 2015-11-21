@@ -1,8 +1,7 @@
 package com.nycjv321.pagerdutytools.controllers;
 
 import com.nycjv321.pagerdutytools.JsonTemplateEngine;
-import com.nycjv321.pagerdutytools.StaticQueries;
-import com.nycjv321.pagerdutytools.models.Incident;
+import com.nycjv321.pagerdutytools.models.queries.IncidentQuery;
 import com.nycjv321.pagerdutytools.utilities.PagerDutySynchronizer;
 import spark.ModelAndView;
 import spark.template.mustache.MustacheTemplateEngine;
@@ -19,7 +18,7 @@ import static spark.Spark.get;
 public interface StaticController {
 
     default void home() {
-        List<Incident> incidents = Incident.get(50);
+        List<com.nycjv321.pagerdutytools.models.Incident> incidents = com.nycjv321.pagerdutytools.models.Incident.get(50);
 
         Map<String, List<?>> payload = new HashMap<>();
         payload.put("incidents", incidents);
@@ -37,7 +36,7 @@ public interface StaticController {
 
     default void triggerCreatorSummaries() {
         get("/incident_creators_count.json", ((request, response) ->
-                new ModelAndView(StaticQueries.getTriggerCount(),
+                new ModelAndView(IncidentQuery.getTriggerCount(),
                         "incident_creators_count"
                 )
         ), new JsonTemplateEngine());
@@ -45,7 +44,7 @@ public interface StaticController {
 
     default void incidentResolveCount() {
         get("/incident_resolve_count.json", ((request, response) ->
-                new ModelAndView(StaticQueries.getResolveCount(),
+                new ModelAndView(IncidentQuery.getResolveCount(),
                         "incident_resolve_count"
                 )
         ), new JsonTemplateEngine());
