@@ -12,7 +12,7 @@ public class PagerDutyWebAppRunner implements StaticController, IncidentControll
 
     static {
         Spark.staticFileLocation("/");
-        Spark.port(8080);
+        Spark.port(8081);
     }
 
     public static void main(String[] args) {
