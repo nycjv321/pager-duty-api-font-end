@@ -1,7 +1,7 @@
 package com.nycjv321.pagerdutytools.controllers;
 
 import com.nycjv321.pagerdutytools.JsonTemplateEngine;
-import com.nycjv321.pagerdutytools.models.Incident;
+import com.nycjv321.pagerdutytools.documents.models.Incident;
 import com.nycjv321.pagerdutytools.view.IncidentJsonView;
 import spark.ModelAndView;
 import spark.QueryParamsMap;

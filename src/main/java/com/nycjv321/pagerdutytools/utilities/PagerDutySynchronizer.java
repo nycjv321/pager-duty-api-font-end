@@ -1,6 +1,7 @@
 package com.nycjv321.pagerdutytools.utilities;
 
 import com.google.gson.JsonObject;
+import com.nycjv321.pagerdutytools.documents.models.Incident;
 import com.nycjv321.pagerdutytools.exceptions.UnResolvedIncidentsException;
 import com.nycjv321.pagerdutytools.rest.processor.IncidentProcessor;
 
@@ -15,11 +16,17 @@ public class PagerDutySynchronizer {
         JsonObject result = new JsonObject();
         result.addProperty("title", "Synchronization Result");
         try {
-            result.addProperty("updated", incidentProcessor.processNewIncidents());
+            result.addProperty("updated", incidentProcessor.processResolvedIncidents());
         } catch (UnResolvedIncidentsException e) {
             result.addProperty("updated", false);
             result.addProperty("message", e.getMessage());
         }
+        return result;
+    }
+
+    public static JsonObject delete(int incidentNumber) {
+        JsonObject result = new JsonObject();
+        Incident.find(incidentNumber).delete();
         return result;
     }
 

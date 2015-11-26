@@ -1,7 +1,8 @@
 package com.nycjv321.pagerdutytools.controllers;
 
 import com.nycjv321.pagerdutytools.JsonTemplateEngine;
-import com.nycjv321.pagerdutytools.models.queries.IncidentQuery;
+import com.nycjv321.pagerdutytools.documents.models.Incident;
+import com.nycjv321.pagerdutytools.documents.queries.IncidentQuery;
 import com.nycjv321.pagerdutytools.utilities.PagerDutySynchronizer;
 import spark.ModelAndView;
 import spark.template.mustache.MustacheTemplateEngine;
@@ -18,7 +19,7 @@ import static spark.Spark.get;
 public interface StaticController {
 
     default void home() {
-        List<com.nycjv321.pagerdutytools.models.Incident> incidents = com.nycjv321.pagerdutytools.models.Incident.get(50);
+        List<Incident> incidents = Incident.get(50);
 
         Map<String, List<?>> payload = new HashMap<>();
         payload.put("incidents", incidents);
@@ -72,5 +73,10 @@ public interface StaticController {
     default void synchronize() {
         get("/synchronize", ((request, response) -> new ModelAndView(PagerDutySynchronizer.synchronize(), "synchronization")), new JsonTemplateEngine());
     }
+
+    default void delete() {
+        get("/delete/:incident_number", ((request, response) -> new ModelAndView(PagerDutySynchronizer.delete(Integer.parseInt(request.params("incident_number"))), "delete")), new JsonTemplateEngine());
+    }
+
 
 }

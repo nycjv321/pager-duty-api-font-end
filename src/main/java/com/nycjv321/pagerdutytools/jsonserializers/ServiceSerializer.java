@@ -4,7 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import com.nycjv321.pagerdutytools.models.Service;
+import com.nycjv321.pagerdutytools.documents.models.Service;
 
 import java.lang.reflect.Type;
 

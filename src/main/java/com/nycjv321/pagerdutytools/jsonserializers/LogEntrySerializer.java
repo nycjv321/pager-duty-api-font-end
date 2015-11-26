@@ -4,9 +4,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import com.nycjv321.pagerdutytools.models.LogEntry;
-import com.nycjv321.pagerdutytools.models.Note;
-import com.nycjv321.pagerdutytools.models.User;
+import com.nycjv321.pagerdutytools.documents.models.LogEntry;
+import com.nycjv321.pagerdutytools.documents.models.Note;
+import com.nycjv321.pagerdutytools.documents.models.User;
 
 import java.lang.reflect.Type;
 import java.util.Objects;
@@ -21,7 +21,7 @@ public class LogEntrySerializer implements JsonSerializer<LogEntry> {
         ChannelSerializer channelSerializer = SerializerFactory.getChannelSerializer();
 
         JsonObject json = new JsonObject();
-        json.addProperty("id", logEntry.getId());
+        json.addProperty("id", logEntry.getLogEntry());
         json.addProperty("type", logEntry.getType());
         json.addProperty("created_at", logEntry.getCreationDate());
         User agent = logEntry.getUser();

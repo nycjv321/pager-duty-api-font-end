@@ -1,7 +1,7 @@
 package com.nycjv321.pagerdutytools.serializer;
 
+import com.nycjv321.pagerdutytools.documents.models.Incident;
 import com.nycjv321.pagerdutytools.jsonserializers.IncidentSerializer;
-import com.nycjv321.pagerdutytools.models.Incident;
 import org.testng.annotations.Test;
 
 import java.util.List;

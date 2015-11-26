@@ -3,8 +3,8 @@ package com.nycjv321.pagerdutytools.utilities;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.nycjv321.pagerdutytools.documents.models.*;
 import com.nycjv321.pagerdutytools.jsonserializers.*;
-import com.nycjv321.pagerdutytools.models.*;
 
 /**
  * Created by jvelasquez on 4/18/15.

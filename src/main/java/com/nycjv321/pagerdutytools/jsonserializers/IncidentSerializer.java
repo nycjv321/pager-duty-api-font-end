@@ -1,10 +1,10 @@
 package com.nycjv321.pagerdutytools.jsonserializers;
 
 import com.google.gson.*;
-import com.nycjv321.pagerdutytools.models.Incident;
-import com.nycjv321.pagerdutytools.models.LogEntry;
-import com.nycjv321.pagerdutytools.models.Note;
-import com.nycjv321.pagerdutytools.models.User;
+import com.nycjv321.pagerdutytools.documents.models.Incident;
+import com.nycjv321.pagerdutytools.documents.models.LogEntry;
+import com.nycjv321.pagerdutytools.documents.models.Note;
+import com.nycjv321.pagerdutytools.documents.models.User;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -18,7 +18,7 @@ public class IncidentSerializer implements JsonSerializer<Incident> {
     @Override
     public JsonElement serialize(Incident incident, Type type, JsonSerializationContext jsonSerializationContext) {
         JsonObject json = new JsonObject();
-        json.addProperty("id", incident.getId());
+        json.addProperty("id", incident.getIncidentId());
         json.addProperty("incident_number", incident.getNumber());
         json.addProperty("summary", incident.getSummary());
         json.addProperty("created_on", incident.getCreationDate());
@@ -29,7 +29,7 @@ public class IncidentSerializer implements JsonSerializer<Incident> {
         json.addProperty("escalations", incident.getEscalations());
 
 //        json.add("service", SerializerFactory.getServiceSerializer().serialize(incident.getService(), Service.class, jsonSerializationContext));
-        json.addProperty("team", incident.getTeam());
+        json.addProperty("team", incident.getServiceName());
 
         List<Note> notes = incident.getNotes();
 

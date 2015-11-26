@@ -24,6 +24,7 @@ public class PagerDutyWebAppRunner implements StaticController, IncidentControll
         app.about();
         app.tipsAndTricks();
         app.synchronize();
+        app.delete();
         app.reports();
 
 
