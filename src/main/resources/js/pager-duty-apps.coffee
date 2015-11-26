@@ -162,14 +162,14 @@ $(document).ready ->
             note_count = 1
             data = data.reverse()
             for note in data
-              note_html = note_html + "<tr><td>" + note_count + "</td><td> " + note.created_at + "</td><td> " + note.user.name + "</td><td colspan=\"6\">" + note.note.content + "</td></tr>"
+              note_html = note_html + "<tr><td>" + note_count + "</td><td colspan=\"6\">" + note.content + "</td></tr>"
               note_count = note_count + 1;
 
             row.after("
             <tr id=\""+ incident_id + "_notes"+ "\" class=\"notes\"><td></td>
               <td td colspan=\"7\">
                 <table class=\"table table-hover table-condensed table-bordered\">
-                <tr><th>#</th><th>Timestamp</th><th>Author</th><th colspan=\"7\">Message</th></tr>
+                <tr><th>#</th><th colspan=\"7\">Message</th></tr>
                 " + note_html + "
                 </table>
               </td>

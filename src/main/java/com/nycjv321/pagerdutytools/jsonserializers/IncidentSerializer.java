@@ -31,11 +31,11 @@ public class IncidentSerializer implements JsonSerializer<Incident> {
 //        json.add("service", SerializerFactory.getServiceSerializer().serialize(incident.getService(), Service.class, jsonSerializationContext));
         json.addProperty("team", incident.getTeam());
 
-        List<LogEntry> notes = incident.getNotes();
+        List<Note> notes = incident.getNotes();
 
         JsonArray notesArray = new JsonArray();
-        for (LogEntry note : notes) {
-            notesArray.add(SerializerFactory.getLogEntrySerializer().serialize(note, Note.class, jsonSerializationContext));
+        for (Note note : notes) {
+            notesArray.add(SerializerFactory.getNoteSerializer().serialize(note, Note.class, jsonSerializationContext));
         }
 
         if (notesArray.size() != 0) {
